@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --ext .tsx,.ts src/",
+    "lint": "eslint --ext .tsx,.ts,.js,.jsx src/",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
+    "@material-ui/core": "^4.3.2",
     "formik": "^1.5.8",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

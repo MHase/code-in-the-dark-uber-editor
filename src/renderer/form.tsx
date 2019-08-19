@@ -1,6 +1,9 @@
 import React from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -12,37 +15,59 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
 });
 
+interface FormValues {
+  name: string;
+  url: string;
+}
+
+const handleSubmit = (values: FormValues, { setSubmitting } : { setSubmitting: Function }) => {
+  setTimeout(() => {
+    alert(JSON.stringify(values, null, 2));
+    setSubmitting(false);
+  }, 400);
+};
+
 const WelcomeForm = () => (
-  <div>
-    <h1>Hello!</h1>
-    <Formik
-      initialValues={{ name: '', url: '' }}
-      validationSchema={SignupSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({
-        errors,
-        touched,
-        isSubmitting,
-        /* and other goodies */
-      }) => (
-        <Form>
-          <Field type="text" name="name" />
-          {errors.name && touched.name ? <div>{errors.name}</div> : null}
-          <Field type="url" name="url" />
-          {errors.url && touched.url ? <div>{errors.url}</div> : null}
-          <button type="submit" disabled={isSubmitting}>
-            Start
-          </button>
-        </Form>
-      )}
-    </Formik>
-  </div>
+  <React.Fragment>
+    <Container maxWidth="sm">
+      <Formik initialValues={{ name: '', url: '' }} validationSchema={SignupSchema} onSubmit={handleSubmit}>
+        {({ values: { name, url }, errors, touched, isSubmitting, handleBlur, handleChange }) => {
+          return (
+            <Form>
+              <TextField
+                type="text"
+                name="name"
+                label="Name"
+                value={name}
+                error={touched.name && Boolean(errors.name)}
+                helperText={touched.name && errors.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                type="url"
+                name="url"
+                label="Url"
+                value={url}
+                error={touched.url && Boolean(errors.url)}
+                helperText={touched.url && errors.url}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                margin="normal"
+              />
+
+              <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>
+                Start
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </Container>
+  </React.Fragment>
 );
 
 export default WelcomeForm;
