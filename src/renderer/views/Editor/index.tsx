@@ -17,29 +17,19 @@ const EditorView = () => {
 
   return (
     <div className="EditorView">
-      <Editor
-        onChange={onChange}
-        defaultValue={window.localStorage.getItem('editorContent') || ''}
-      />
+      <Editor onChange={onChange} defaultValue={window.localStorage.getItem('editorContent') || ''} />
 
       <div className="EditorView__nametag">Admin</div>
 
       <div className="EditorView__controls">
         <div className="EditorView__reference">
           Reference
-          <div
-            className="EditorView__reference-image"
-            style={{ backgroundImage: `url(${referenceSource}` }}
-          ></div>
+          <div className="EditorView__reference-image" style={{ backgroundImage: `url(${referenceSource}` }}></div>
         </div>
 
         <div className="EditorView__buttons">
-          <Button className="EditorView__button EditorView__buttons-instructions">
-            Instructions
-          </Button>
-          <Button className="EditorView__button EditorView__buttons-finish">
-            Finish
-          </Button>
+          <Button className="EditorView__button EditorView__buttons-instructions">Instructions</Button>
+          <Button className="EditorView__button EditorView__buttons-finish">Finish</Button>
         </div>
       </div>
     </div>
