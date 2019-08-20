@@ -1,3 +1,3 @@
 import './style.scss';
 
-import './App.tsx';
+import './components/App';

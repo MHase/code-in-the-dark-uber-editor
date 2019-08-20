@@ -1,0 +1,12 @@
+.App__switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  margin: 0;
+  transform: translateY(calc(-100% - 20px));
+  transition: transform 400ms;
+
+  &--visible {
+    transform: translateY(0);
+  }
+}
