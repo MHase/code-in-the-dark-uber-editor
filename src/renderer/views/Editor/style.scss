@@ -1,0 +1,55 @@
+$spacing: 20px;
+
+.EditorView {
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+
+  &__nametag {
+    position: absolute;
+    bottom: $spacing;
+    left: $spacing;
+    z-index: 4;
+    padding: 20px;
+    font-size: 56px;
+    color: #fff;
+    background: transparentize(#3a9364, .25);
+
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    right: $spacing;
+    bottom: $spacing;
+  }
+
+  &__reference {
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: right;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &-image {
+      width: 200px;
+      height: 160px;
+      margin-top: 15px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  &__button {
+    display: block;
+    margin-left: auto;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+}
