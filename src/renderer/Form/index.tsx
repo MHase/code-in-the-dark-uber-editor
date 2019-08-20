@@ -1,24 +1,12 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      height: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    btn: {
-      marginTop: theme.spacing(2),
-    },
-  }),
-);
+import { FormValues } from './types';
+import './index.scss';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,11 +17,6 @@ const SignupSchema = Yup.object().shape({
     .url('Invalid ')
     .required('Required'),
 });
-
-interface FormValues {
-  name: string;
-  url: string;
-}
 
 const initialValues = {
   name: window.localStorage.getItem('name') || '',
@@ -50,11 +33,9 @@ const handleSubmit = (values: FormValues, { setSubmitting }: { setSubmitting: Fu
 };
 
 const WelcomeForm = () => {
-  const classes = useStyles();
-
   return (
     <React.Fragment>
-      <Container maxWidth="sm" className={classes.container}>
+      <Container maxWidth="sm" className="Welcome__container">
         <Formik initialValues={initialValues} validationSchema={SignupSchema} onSubmit={handleSubmit}>
           {({ values: { name, url }, errors, touched, isSubmitting, handleBlur, handleChange }) => {
             return (
@@ -90,7 +71,7 @@ const WelcomeForm = () => {
                   type="submit"
                   disabled={isSubmitting}
                   size="large"
-                  className={classes.btn}
+                  className="Welcome__btn"
                 >
                   Start
                 </Button>

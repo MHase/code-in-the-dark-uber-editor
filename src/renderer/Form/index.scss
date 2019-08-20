@@ -1,0 +1,11 @@
+.Welcome {
+  &__container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__btn {
+    margin-top: 16px;
+  }
+}

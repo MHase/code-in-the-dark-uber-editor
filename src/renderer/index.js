@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import WelcomeForm from './form';
+import WelcomeForm from './Form';
 
 const setTheme = type =>
   createMuiTheme({
@@ -27,7 +27,7 @@ const App = () => {
       <div className="App">
         <FormControlLabel
           control={<Switch checked={darkTheme} onChange={handleChange} value="checkedDarkMode" />}
-          label="Dark mode"
+          label="Switch mode"
         />
         <header className="App-header">
           <WelcomeForm />
