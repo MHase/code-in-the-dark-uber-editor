@@ -1,56 +1,39 @@
-// // Initial welcome page. Delete the following line to remove it.
-// 'use strict';
-// const styles = document.createElement('style');
-// // styles.innerText = `@import url(https://unpkg.com/spectre.css/dist/spectre.min.css);.empty{display:flex;flex-direction:column;justify-content:center;height:100vh;position:relative}.footer{bottom:0;font-size:13px;left:50%;opacity:.9;position:absolute;transform:translateX(-50%);width:100%}`;
-// const vueScript = document.createElement('script');
-// vueScript.setAttribute('type', 'text/javascript'), vueScript.setAttribute('src', 'https://unpkg.com/vue'), vueScript.onload = init, document.head.appendChild(vueScript), document.head.appendChild(styles);
-//
-// function init() {
-//   Vue.config.devtools = false, Vue.config.productionTip = false, new Vue({
-//     data: {
-//       versions: {
-//         electron: process.versions.electron,
-//         electronWebpack: require('electron-webpack/package.json').version
-//       }
-//     },
-//     methods: {
-//       open(b) {
-//         require('electron').shell.openExternal(b)
-//       }
-//     },
-//     template: `
-//     <div>
-//       <div class=empty>
-//         <p class="empty-title h5">Say hello to my little friend to your new project!
-//         <p class=empty-subtitle>
-//           Get qwdqwd now and take advantage of the great documentation at hand.
-//           <div class=empty-action>
-//           <button @click="open('https://webpack.electron.build')"class="btn btn-primary">Documentation</button> <button @click="open('https://electron.atom.io/docs/')"class="btn btn-primary">Electron</button><br><ul class=breadcrumb><li class=breadcrumb-item>electron-webpack v{{ versions.electronWebpack }}</li><li class=breadcrumb-item>electron v{{ versions.electron }}</li></ul></div><p class=footer>This intitial landing page can be easily removed from <code>src/renderer/index.js</code>.</p></div></div>`
-//   }).$mount('#app')
-// }
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import './test';
+import WelcomeForm from './Form';
+
+const setTheme = type =>
+  createMuiTheme({
+    palette: {
+      type: type ? 'dark' : 'light',
+    },
+  });
 
 const App = () => {
+  const [darkTheme, setDarkTheme] = React.useState(true);
+
+  const handleChange = event => {
+    setDarkTheme(event.target.checked);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          I will not
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={setTheme(darkTheme)}>
+      <CssBaseline />
+      <div className="App">
+        <FormControlLabel
+          control={<Switch checked={darkTheme} onChange={handleChange} value="checkedDarkMode" />}
+          label="Switch mode"
+        />
+        <header className="App-header">
+          <WelcomeForm />
+        </header>
+      </div>
+    </MuiThemeProvider>
   );
 };
 
