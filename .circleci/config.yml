@@ -38,6 +38,7 @@ jobs:
 
       # run codechecks
       - run: yarn codechecks
+      - run: yarn danger ci
 
       # run unit tests
       - run: yarn test
