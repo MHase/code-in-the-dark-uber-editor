@@ -1,0 +1,10 @@
+checks:
+  - name: build-size-watcher
+    options:
+      gzip: false
+      files:
+        - path: "./dist/**/*.js"
+        - path: "./dist/**/*.css"
+settings:
+  branches:
+    - develop
