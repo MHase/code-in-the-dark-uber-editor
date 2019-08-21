@@ -3,8 +3,8 @@ checks:
     options:
       gzip: false
       files:
-        - path: "./dist/**/*.d.ts"
         - path: "./dist/**/*.js"
+        - path: "./dist/**/*.css"
 settings:
   branches:
     - develop
