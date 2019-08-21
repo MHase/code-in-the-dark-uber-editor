@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { render } from 'react-dom';
-import { Router, Switch as RouterSwitch, Route } from 'react-router';
-import { createBrowserHistory } from 'history';
+import { HashRouter, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Switch from '@material-ui/core/Switch';
@@ -12,8 +11,6 @@ import EditorView from '../../views/Editor/index';
 import WelcomeForm from '../../views/Form/index';
 
 import './style.scss';
-
-const customHistory = createBrowserHistory();
 
 const setTheme = (type: boolean) =>
   createMuiTheme({
@@ -48,12 +45,10 @@ const App = () => {
           label="Switch mode"
           className={cn('App__switch', { 'App__switch--visible': isSwitchVisible })}
         />
-        <Router history={customHistory}>
-          <RouterSwitch>
-            <Route path="/" component={WelcomeForm} />
-            <Route path="/editor" component={EditorView} />
-          </RouterSwitch>
-        </Router>
+        <HashRouter>
+          <Route path="/" exact component={WelcomeForm} />
+          <Route path="/editor" component={EditorView} />
+        </HashRouter>
       </MuiThemeProvider>
     </>
   );
