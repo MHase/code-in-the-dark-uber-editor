@@ -14,10 +14,11 @@ const onChange = (newValue: string) => {
 const EditorView = () => {
   const url = window.localStorage.getItem('url');
   const referenceSource = url ? `${url}/assets/page.png` : ExampleReference;
+  const editorDefaultValue = window.localStorage.getItem('editorContent');
 
   return (
     <div className="EditorView">
-      <Editor onChange={onChange} defaultValue={window.localStorage.getItem('editorContent') || ''} />
+      <Editor onChange={onChange} defaultValue={editorDefaultValue} />
 
       <div className="EditorView__nametag">Admin</div>
 
