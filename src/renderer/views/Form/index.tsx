@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@material-ui/core/TextField';
@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 
 import { FormValues } from './types';
+
 import './index.scss';
 
 const SignupSchema = Yup.object().shape({
@@ -23,16 +24,14 @@ const initialValues = {
   url: window.localStorage.getItem('url') || '',
 };
 
-const handleSubmit = (values: FormValues, { setSubmitting }: { setSubmitting: Function }) => {
-  setTimeout(() => {
-    alert(JSON.stringify(values, null, 2));
+const WelcomeForm = ({ ...props }) => {
+  const handleSubmit = useCallback((values: FormValues, { setSubmitting }: { setSubmitting: Function }) => {
+    window.localStorage.setItem('name', values.name);
+    window.localStorage.setItem('url', values.url);
     setSubmitting(false);
-  }, 400);
-  window.localStorage.setItem('name', values.name);
-  window.localStorage.setItem('url', values.url);
-};
+    props.history.push('/editor');
+  }, []);
 
-const WelcomeForm = () => {
   return (
     <React.Fragment>
       <Container maxWidth="sm" className="Welcome__container">
