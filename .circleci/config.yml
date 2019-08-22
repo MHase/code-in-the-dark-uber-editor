@@ -33,16 +33,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # build project
-      - run: yarn dist
-
-      # run codechecks
-      - run: yarn codechecks
-      - run: yarn danger ci
-
       # run unit tests
       - run: yarn test
 
       # coverage
       # - run: npm run coveralls # for premium version
       # - run: npm run coverage
+
+      # build project
+      - run: yarn dist
+
+      # run codechecks
+      - run: yarn codechecks
+      - run: yarn danger ci
