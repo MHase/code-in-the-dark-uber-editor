@@ -1,4 +1,9 @@
-import {message, danger} from "danger"
+import {message, danger, schedule} from "danger"
+import  yarn from 'danger-plugin-yarn'
+import jest from 'danger-plugin-jest'
 
-const modifiedMD = danger.git.modified_files.join("- ")
-message("Changed Files in this PR: \n - " + modifiedMD)
+schedule(yarn());
+jest();
+
+const modifiedMD = danger.git.modified_files.join("- ");
+message("Changed Files in this PR: \n - " + modifiedMD);
