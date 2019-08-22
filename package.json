@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint --ext .tsx,.ts,.js,.jsx src/",
+    "stylelint": "stylelint 'src/**/*.scss'",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
@@ -56,6 +57,7 @@
     "eslint-plugin-react": "^7.14.2",
     "jest": "^24.9.0",
     "node-sass": "^4.12.0",
+    "pre-commit": "^1.2.2",
     "prettier": "1.18.2",
     "sass-loader": "^7.2.0",
     "stylelint": "^10.1.0",
@@ -69,5 +71,10 @@
     "moduleNameMapper": {
       "^.+\\.(s?css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
-  }
+  },
+  "pre-commit": [
+    "test",
+    "lint",
+    "stylelint"
+  ]
 }
