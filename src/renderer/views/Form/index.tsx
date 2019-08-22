@@ -65,12 +65,12 @@ const WelcomeForm = ({ ...props }) => {
                 />
 
                 <Button
+                  className="Welcome__btn"
                   variant="contained"
                   color="secondary"
                   type="submit"
                   disabled={isSubmitting}
                   size="large"
-                  className="Welcome__btn"
                 >
                   Start
                 </Button>
