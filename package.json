@@ -68,6 +68,10 @@
   "jest": {
     "moduleNameMapper": {
       "^.+\\.(s?css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
   }
 }
