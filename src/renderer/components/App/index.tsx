@@ -10,6 +10,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EditorView from '../../views/Editor/index';
 import WelcomeForm from '../../views/Form/index';
 
+import StorageProvider from '../../context/storage';
+
 import './style.scss';
 
 const setTheme = (type: boolean) =>
@@ -37,7 +39,7 @@ const App = () => {
   });
 
   return (
-    <>
+    <StorageProvider>
       <MuiThemeProvider theme={setTheme(darkTheme)}>
         <CssBaseline />
         <FormControlLabel
@@ -50,7 +52,7 @@ const App = () => {
           <Route path="/editor" component={EditorView} />
         </HashRouter>
       </MuiThemeProvider>
-    </>
+    </StorageProvider>
   );
 };
 
