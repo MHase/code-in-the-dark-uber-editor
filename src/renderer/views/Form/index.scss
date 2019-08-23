@@ -1,11 +1,12 @@
 .Welcome {
   &__container {
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
   }
-  &__btn {
-    margin-top: 16px;
-  }
+}
+
+.MuiButton-root.Welcome__btn {
+  margin-top: 16px;
 }

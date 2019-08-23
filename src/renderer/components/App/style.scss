@@ -1,8 +1,8 @@
 .App__switch {
   position: absolute;
-  z-index: 2;
   top: 20px;
   right: 20px;
+  z-index: 2;
   margin: 0;
   transform: translateY(calc(-100% - 20px));
   transition: transform 400ms;
