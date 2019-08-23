@@ -1,5 +1,5 @@
 {
-  "name": "electron-webpack-quick-start",
+  "name": "code-in-the-dark-uber-editor",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -80,5 +80,8 @@
     "test",
     "lint",
     "stylelint"
-  ]
+  ],
+  "build": {
+    "icon": "./icon.png"
+  }
 }
