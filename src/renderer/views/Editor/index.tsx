@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { RouteComponentProps } from '@reach/router';
 
 import Editor from '../../components/Editor/index';
 import Button from '../../components/Button/index';
@@ -9,7 +10,7 @@ import { StorageContext } from '../../context/storage';
 
 import './style.scss';
 
-const EditorView = () => {
+const EditorView: React.SFC<RouteComponentProps> = () => {
   const { state, dispatch } = useContext(StorageContext);
   const { content, name, url } = state;
 

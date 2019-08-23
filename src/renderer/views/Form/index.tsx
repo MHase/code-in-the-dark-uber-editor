@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { navigate, RouteComponentProps } from '@reach/router';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -21,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const WelcomeForm = ({ ...props }) => {
+const WelcomeForm: React.SFC<RouteComponentProps> = () => {
   const { state, dispatch } = useContext(StorageContext);
   const { name, url } = state;
 
@@ -35,57 +36,55 @@ const WelcomeForm = ({ ...props }) => {
     dispatch({ type: 'updateUrl', payload: values.url });
 
     setSubmitting(false);
-    props.history.push('/editor');
+    navigate('/editor');
   }, []);
 
   return (
-    <React.Fragment>
-      <Container maxWidth="sm" className="Welcome__container">
-        <Formik initialValues={initialValues} validationSchema={SignupSchema} onSubmit={handleSubmit}>
-          {({ values: { name, url }, errors, touched, isSubmitting, handleBlur, handleChange }) => {
-            return (
-              <Form>
-                <TextField
-                  type="text"
-                  name="name"
-                  label="Name"
-                  value={name}
-                  error={touched.name && Boolean(errors.name)}
-                  helperText={touched.name && errors.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  fullWidth
-                  margin="normal"
-                />
-                <TextField
-                  type="url"
-                  name="url"
-                  label="Url"
-                  value={url}
-                  error={touched.url && Boolean(errors.url)}
-                  helperText={touched.url && errors.url}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  fullWidth
-                  margin="normal"
-                />
+    <Container maxWidth="sm" className="Welcome__container">
+      <Formik initialValues={initialValues} validationSchema={SignupSchema} onSubmit={handleSubmit}>
+        {({ values: { name, url }, errors, touched, isSubmitting, handleBlur, handleChange }) => {
+          return (
+            <Form>
+              <TextField
+                type="text"
+                name="name"
+                label="Name"
+                value={name}
+                error={touched.name && Boolean(errors.name)}
+                helperText={touched.name && errors.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                type="url"
+                name="url"
+                label="Url"
+                value={url}
+                error={touched.url && Boolean(errors.url)}
+                helperText={touched.url && errors.url}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                margin="normal"
+              />
 
-                <Button
-                  className="Welcome__btn"
-                  variant="contained"
-                  color="secondary"
-                  type="submit"
-                  disabled={isSubmitting}
-                  size="large"
-                >
-                  Start
-                </Button>
-              </Form>
-            );
-          }}
-        </Formik>
-      </Container>
-    </React.Fragment>
+              <Button
+                className="Welcome__btn"
+                variant="contained"
+                color="secondary"
+                type="submit"
+                disabled={isSubmitting}
+                size="large"
+              >
+                Start
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </Container>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { render } from 'react-dom';
-import { HashRouter, Route } from 'react-router-dom';
+import { Router } from '@reach/router';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Switch from '@material-ui/core/Switch';
@@ -47,10 +47,10 @@ const App = () => {
           label="Switch mode"
           className={cn('App__switch', { 'App__switch--visible': isSwitchVisible })}
         />
-        <HashRouter>
-          <Route path="/" exact component={WelcomeForm} />
-          <Route path="/editor" component={EditorView} />
-        </HashRouter>
+        <Router>
+          <WelcomeForm default />
+          <EditorView path="/editor" />
+        </Router>
       </MuiThemeProvider>
     </StorageProvider>
   );
