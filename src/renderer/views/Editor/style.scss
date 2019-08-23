@@ -24,6 +24,7 @@ $spacing: 20px;
     position: absolute;
     right: $spacing;
     bottom: $spacing;
+    z-index: 1;
   }
 
   &__reference {

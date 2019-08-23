@@ -1,9 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+
+import { StorageContext } from '../../context/storage';
 
 import { FormValues } from './types';
 
@@ -19,15 +21,19 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const initialValues = {
-  name: window.localStorage.getItem('name') || '',
-  url: window.localStorage.getItem('url') || '',
-};
-
 const WelcomeForm = ({ ...props }) => {
+  const { state, dispatch } = useContext(StorageContext);
+  const { name, url } = state;
+
+  const initialValues = {
+    name,
+    url,
+  };
+
   const handleSubmit = useCallback((values: FormValues, { setSubmitting }: { setSubmitting: Function }) => {
-    window.localStorage.setItem('name', values.name);
-    window.localStorage.setItem('url', values.url);
+    dispatch({ type: 'updateName', payload: values.name });
+    dispatch({ type: 'updateUrl', payload: values.url });
+
     setSubmitting(false);
     props.history.push('/editor');
   }, []);
